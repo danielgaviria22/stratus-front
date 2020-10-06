@@ -1,14 +1,15 @@
 import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { orange, blue } from '@material-ui/core/colors';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 import TabPanel from './components/TabPanel';
-import GeneralView from './containers/GeneralView';
-import StatusDataView from './containers/StatusDataView';
+import CostsView from './containers/GeneralView';
+import MetricsView from './containers/StatusDataView';
+
+import StratusLogo from './icons/stratus-logo.svg';
 
 import './App.css';
 
@@ -23,10 +24,10 @@ function App() {
     palette: {
       type: 'dark',
       primary: {
-        main: orange[500]
+        main: '#376DED',
       },
       secondary: {
-        main: blue[400]
+        main: '#fff',
       }
     },
   });
@@ -46,15 +47,16 @@ function App() {
           value={value}
           onChange={handleChange}
         >
-          <Tab label="General" {...a11yProps(0)} />
-          <Tab label="Tab2" {...a11yProps(1)} />
+          <Tab label="Cost" {...a11yProps(0)} />
+          <Tab label="Metrics" {...a11yProps(1)} />
         </Tabs>
+        <img className="logo-image" src={StratusLogo} alt="Stratus" />
       </AppBar>
       <TabPanel value={value} index={0}>
-        <GeneralView/>
+        <CostsView/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <StatusDataView />
+        <MetricsView />
       </TabPanel>
     </ThemeProvider>
   );
